@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './index.scss';
+
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
+import Pokedex from './containers/Pokedex';
+import Pokemon from './containers/Pokemon';
+
+const history = createBrowserHistory();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <BrowserRouter history={history}>
+    <Routes>
+        <Route path='/' element={<Pokedex />} />
+        <Route path='/pokemon/:name' element={<Pokemon />} />
+    </Routes>
+  </BrowserRouter>,
+  document.getElementById('app')
 );
 
 // If you want to start measuring performance in your app, pass a function
